@@ -8,8 +8,7 @@ Some key features have been omitted for this reason.
 Each part of the tutorial is contained in its own branch starting from step-1_binding.
 
 ## Topics
-- Data binding
-- Repeaters
+- Data binding & Repeaters
 - Directives
 - Services & promises
 - Validation
