@@ -11,4 +11,5 @@ Each part of the tutorial is contained in its own branch starting from step-1_bi
 - Data binding & Repeaters
 - Directives
 - Services & promises
+- Directives with isolate
 - Validation
