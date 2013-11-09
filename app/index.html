@@ -12,19 +12,19 @@
 <body class="container" ng-controller="ProductCtrl">
 <h1>AngularJS Tutorial</h1>
 
-<form class="form-horizontal">
+<form class="form-horizontal" ng-submit="add()">
     <div class="form-group">
         <label for="product" class="col-lg-2 control-label">Product</label>
 
         <div class="col-lg-4">
-            <input type="text" class="form-control" id="product">
+            <input type="text" class="form-control" id="product" ng-model="data.name">
         </div>
     </div>
     <div class="form-group">
         <label for="price" class="col-lg-2 control-label">Nett price</label>
 
         <div class="col-lg-2">
-            <input type="text" class="form-control" id="price">
+            <input type="text" class="form-control" id="price" ng-model="data.price">
         </div>
     </div>
     <div class="form-group">

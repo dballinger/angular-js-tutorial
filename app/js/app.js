@@ -9,4 +9,15 @@ angular.module('tutorial', [])
                     {name: "Mini shopping cart", price: 2}
                 ]
             };
+
+            $scope.add = function () {
+                $scope.data.products.push(
+                        {
+                            name: $scope.data.name,
+                            price: $scope.data.price
+                        }
+                );
+                delete $scope.data['name'];
+                delete $scope.data['price'];
+            };
         })
