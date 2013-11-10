@@ -50,16 +50,34 @@ angular.module('tutorial', [])
             }
         })
 
+        .directive('withVat', function (VatCalculator, currencyFilter) {
+            return {
+                restrict: 'A',
+                scope: {
+                    nettPrice: '=withVat'
+                },
+                link: function (scope, element, attrs) {
+                    scope.$watch('nettPrice', function(nettPrice) {
+                        VatCalculator.calculateGross(nettPrice).then(function(grossPrice) {
+                            element.text(currencyFilter(grossPrice))
+                        });
+                    });
+                }
+            }
+        })
+
         .factory('VatCalculator', function ($http, $q) {
             var promisedVat;
             return {
                 calculateGross: function (nettPrice) {
                     if (!promisedVat) {
                         promisedVat = $http.get('data/vat.json').then(function (response) {
-                            return nettPrice * (1 + (response.data.rate / 100.0));
+                            return (1 + (response.data.rate / 100.0));
                         });
                     }
-                    return promisedVat;
+                    return promisedVat.then(function(factor) {
+                        return nettPrice * factor;
+                    });
                 }
             }
         })

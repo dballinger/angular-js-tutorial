@@ -26,7 +26,7 @@
     <tr ng-repeat="product in data.products">
         <td>{{product.name}}</td>
         <td>{{product.price | currency}}</td>
-        <td>{{product.grossPrice | currency}}</td>
+        <td with-vat="product.price"></td>
     </tr>
     </tbody>
 </table>

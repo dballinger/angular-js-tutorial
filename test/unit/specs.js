@@ -84,6 +84,20 @@ describe('tutorial components', function () {
             VatCalculator.calculateGross(nettPrice);
         }));
 
+        it('should not cache the result of the calculation', inject(function (VatCalculator) {
+            var shouldBeTwelve, shouldBeTwentyFour;
+            VatCalculator.calculateGross(10).then(function(gross) {
+                shouldBeTwelve = gross;
+            });
+            VatCalculator.calculateGross(20).then(function(gross) {
+                shouldBeTwentyFour = gross;
+            });
+            httpBackend.flush();
+
+            expect(shouldBeTwelve).toEqual(12)
+            expect(shouldBeTwentyFour).toEqual(24)
+        }));
+
         afterEach(function () {
             httpBackend.verifyNoOutstandingRequest();
             httpBackend.verifyNoOutstandingExpectation();
