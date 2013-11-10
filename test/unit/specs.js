@@ -43,12 +43,50 @@ describe('tutorial components', function () {
     describe('productForm', function () {
         var form;
 
-        beforeEach(inject(function($compile, $rootScope) {
-             form = $compile('<product-form></product-form>')($rootScope.$new())
+        beforeEach(inject(function ($compile, $rootScope) {
+            form = $compile('<product-form></product-form>')($rootScope.$new())
         }));
 
-        it('should have two inputs', function() {
+        it('should have two inputs', function () {
             expect(form.find('input').length).toEqual(2);
         })
-    })
+    });
+
+    describe('VatCalculator', function () {
+
+        var httpBackend;
+
+        beforeEach(inject(function ($httpBackend) {
+            httpBackend = $httpBackend;
+            httpBackend.expect('GET', 'data/vat.json').respond({"rate": 20});
+        }));
+
+        it('should calculate vat', inject(function (VatCalculator) {
+            var nettPrice = 10;
+            var expectedGrossPrice = 12;
+
+            var promisedGross = VatCalculator.calculateGross(nettPrice);
+
+            var actualGrossPrice;
+            promisedGross.then(function (resolved) {
+                actualGrossPrice = resolved;
+            });
+            httpBackend.flush();
+
+            expect(actualGrossPrice).toEqual(expectedGrossPrice);
+        }));
+
+        it('should cache the vat rate', inject(function (VatCalculator) {
+            var nettPrice = 10;
+            var expectedGrossPrice = 12;
+
+            VatCalculator.calculateGross(nettPrice);
+            VatCalculator.calculateGross(nettPrice);
+        }));
+
+        afterEach(function () {
+            httpBackend.verifyNoOutstandingRequest();
+            httpBackend.verifyNoOutstandingExpectation();
+        })
+    });
 });

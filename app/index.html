@@ -19,12 +19,14 @@
     <tr>
         <th>Product</th>
         <th>Nett price</th>
+        <th>Gross price</th>
     </tr>
     </thead>
     <tbody>
     <tr ng-repeat="product in data.products">
         <td>{{product.name}}</td>
         <td>{{product.price | currency}}</td>
+        <td>{{product.grossPrice | currency}}</td>
     </tr>
     </tbody>
 </table>
