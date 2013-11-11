@@ -9,7 +9,7 @@ Each part of the tutorial is contained in its own branch starting from step-1_bi
 
 ## Topics
 - Data binding
-- Repeaters
-- Directives
+- Directives with inherited scope
 - Services & promises
+- Directives with isolated scope
 - Validation
