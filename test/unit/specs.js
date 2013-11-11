@@ -25,7 +25,7 @@ describe('tutorial components', function () {
         it('should add new product.', function () {
             scope.data.name = "new";
             scope.data.price = 10;
-            scope.add();
+            scope.add({});
             expect(scope.data.products[scope.data.products.length - 1]).toEqual(
                     {name: "new", price: 10}
             );
@@ -34,7 +34,7 @@ describe('tutorial components', function () {
         it('should add new product.', function () {
             scope.data.name = "new";
             scope.data.price = 10;
-            scope.add();
+            scope.add({});
             expect(scope.data.name).toBeUndefined();
             expect(scope.data.price).toBeUndefined();
         });
