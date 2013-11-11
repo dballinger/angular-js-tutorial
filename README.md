@@ -11,8 +11,8 @@ The tests are only there to showcase some of the unit testing techniques useful 
 Each part of the tutorial is contained in its own branch starting from step-1_binding.
 
 ## Topics
-- Data binding & Repeaters
-- Directives
+- Data binding
+- Directives with inherited scope
 - Services & promises
 - Directives with isolated scope
 - Validation
